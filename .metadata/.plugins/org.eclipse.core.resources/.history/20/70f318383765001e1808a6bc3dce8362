@@ -174,14 +174,8 @@ int main(void)
 		  break;
 	  }
   }
-  setTimer1(100);
   while (1)
   {
-	  if(timer1_flag == 1){
-		  setTimer1(100);
-		  //TODO
-		  HAL_GPIO_TogglePin(led_red_GPIO_Port, led_red_Pin);
-	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
