@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "software_timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,11 +89,91 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  void Display7SEG(int num){
+	  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(e_GPIO_Port,e_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_SET);
+	  switch(num){
+	  case 0:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(e_GPIO_Port,e_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 1:
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 2:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(e_GPIO_Port,e_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 3:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 4:
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 5:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 6:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(e_GPIO_Port,e_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 7:
+	     HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+	  	 HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+	  	 HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+	  	 break;
+	  case 8:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(e_GPIO_Port,e_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  break;
+	  case 9:
+		  HAL_GPIO_WritePin(a_GPIO_Port,a_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(b_GPIO_Port,b_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(c_GPIO_Port,c_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(g_GPIO_Port,g_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(d_GPIO_Port,d_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(f_GPIO_Port,f_Pin, GPIO_PIN_RESET);
+		  break;
+	  }
+  }
   while (1)
   {
     /* USER CODE END WHILE */
@@ -222,7 +302,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	timerRun();
+}
 /* USER CODE END 4 */
 
 /**
