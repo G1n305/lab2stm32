@@ -134,7 +134,6 @@ int main(void)
 		  setTimer1(100);
  800017c:	2064      	movs	r0, #100	; 0x64
  800017e:	f000 f8f5 	bl	800036c <setTimer1>
-		  //TODO
 		  HAL_GPIO_TogglePin(led_red_GPIO_Port, led_red_Pin);
  8000182:	2120      	movs	r1, #32
  8000184:	4803      	ldr	r0, [pc, #12]	; (8000194 <main+0x48>)
