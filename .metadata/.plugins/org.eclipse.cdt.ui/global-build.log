@@ -1,4 +1,4 @@
-01:34:03 **** Incremental Build of configuration Debug for project lab2 ****
+01:37:10 **** Incremental Build of configuration Debug for project lab2 ****
 make -j8 all 
 arm-none-eabi-size   lab2.elf 
    text	   data	    bss	    dec	    hex	filename
