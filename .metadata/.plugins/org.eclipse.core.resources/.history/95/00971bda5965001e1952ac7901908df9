@@ -215,7 +215,6 @@ int main(void)
   {
 	  if(timer1_flag == 1){
 		  //TODO
-		  HAL_GPIO_TogglePin(dot_GPIO_Port, dot_Pin);
 		  update7SEG(index_led);
 		  index_led++;
 		  if(index_led > 3) index_led = 0;
