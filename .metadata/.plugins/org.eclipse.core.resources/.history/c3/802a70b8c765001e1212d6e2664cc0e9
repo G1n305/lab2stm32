@@ -182,7 +182,7 @@ int main(void)
   {
 	  if(timer1_flag == 1){
 		  //TODO
-		  //HAL_GPIO_TogglePin(dot_GPIO_Port, dot_Pin);
+		  HAL_GPIO_TogglePin(dot_GPIO_Port, dot_Pin);
 		  switch(status){
 		  case 1:
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
@@ -219,7 +219,6 @@ int main(void)
 	  }
 	  if(timer2_flag == 1){
 		  HAL_GPIO_TogglePin(dot_GPIO_Port, dot_Pin);
-		  HAL_GPIO_TogglePin(led_red_GPIO_Port, led_red_Pin);
 		  setTimer2(100);
 	  }
     /* USER CODE END WHILE */
