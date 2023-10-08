@@ -229,32 +229,6 @@ void  updateClockBuffer(int hour, int minute){
 		  led_buffer[2]=0;
 	  }
   }
-const int MAX_LED_MATRIX = 8;
-int index_led_matrix = 0;
-int index_led_matrix = 0;
-
-void updateLEDMatrix (int index ) {
-	switch ( index ) {
-	case 0:
-		break;
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	case 7:
-		break;
-	default:
-		break;
-	}
-}
   int hour = 15, minute = 8, second = 50;
   setTimer1(100);
   setTimer2(25);
