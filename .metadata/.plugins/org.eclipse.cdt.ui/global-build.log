@@ -1,41 +1,14 @@
-23:09:42 **** Incremental Build of configuration Debug for project lab2 ****
+04:51:21 **** Incremental Build of configuration Debug for project lab2 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:268:30: warning: unused variable 'second' [-Wunused-variable]
-  268 |   int hour = 15, minute = 8, second = 50;
-      |                              ^~~~~~
-../Core/Src/main.c:268:18: warning: unused variable 'minute' [-Wunused-variable]
-  268 |   int hour = 15, minute = 8, second = 50;
-      |                  ^~~~~~
-../Core/Src/main.c:268:7: warning: unused variable 'hour' [-Wunused-variable]
-  268 |   int hour = 15, minute = 8, second = 50;
-      |       ^~~~
-../Core/Src/main.c:234:9: warning: variable 'matrix_buffer' set but not used [-Wunused-but-set-variable]
-  234 | uint8_t matrix_buffer[8] = {0x01, 0x02 , 0x03 ,0x04 ,0x05, 0x06 ,0x07 ,0x08};
+../Core/Src/main.c:222:9: warning: variable 'matrix_buffer' set but not used [-Wunused-but-set-variable]
+  222 | uint8_t matrix_buffer[8] = {0x01, 0x02 , 0x03 ,0x04 ,0x05, 0x06 ,0x07 ,0x08};
       |         ^~~~~~~~~~~~~
-../Core/Src/main.c:233:5: warning: unused variable 'index_led_matrix' [-Wunused-variable]
-  233 | int index_led_matrix = 0;
-      |     ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:232:11: warning: unused variable 'MAX_LED_MATRIX' [-Wunused-variable]
-  232 | const int MAX_LED_MATRIX = 8;
-      |           ^~~~~~~~~~~~~~
-../Core/Src/main.c:178:7: warning: unused variable 'index_led' [-Wunused-variable]
-  178 |   int index_led = 0;
-      |       ^~~~~~~~~
-../Core/Src/main.c:177:13: warning: unused variable 'MAX_LED' [-Wunused-variable]
-  177 |   const int MAX_LED = 4;
-      |             ^~~~~~~
 At top level:
-../Core/Src/main.c:235:6: warning: 'updateLEDMatrix' defined but not used [-Wunused-function]
-  235 | void updateLEDMatrix (int index ) {
-      |      ^~~~~~~~~~~~~~~
-../Core/Src/main.c:214:7: warning: 'updateClockBuffer' defined but not used [-Wunused-function]
-  214 | void  updateClockBuffer(int hour, int minute){
-      |       ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:180:8: warning: 'update7SEG' defined but not used [-Wunused-function]
-  180 |   void update7SEG ( int index ) {
-      |        ^~~~~~~~~~
+../Core/Src/main.c:263:6: warning: 'turnOffMatrix' defined but not used [-Wunused-function]
+  263 | void turnOffMatrix(){
+      |      ^~~~~~~~~~~~~
 arm-none-eabi-gcc -o "lab2.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\lab2MCU\git\lab2\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: lab2.elf
  
@@ -43,7 +16,7 @@ arm-none-eabi-size   lab2.elf
 arm-none-eabi-objdump -h -S  lab2.elf  > "lab2.list"
 arm-none-eabi-objcopy  -O ihex  lab2.elf  "lab2.hex"
    text	   data	    bss	    dec	    hex	filename
-   7316	     20	   1676	   9012	   2334	lab2.elf
+   8876	     20	   1676	  10572	   294c	lab2.elf
 arm-none-eabi-objcopy  -O binary  lab2.elf  "lab2.bin"
 Finished building: default.size.stdout
  
