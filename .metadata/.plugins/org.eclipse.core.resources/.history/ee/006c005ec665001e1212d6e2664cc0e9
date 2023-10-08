@@ -207,8 +207,6 @@ int main(void)
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_RESET);
 		  Display7SEG(led_buffer[index]);
 		  break;
-	  default:
-		  break;
 	  }
   }
 void  updateClockBuffer(int hour, int minute){

@@ -207,8 +207,6 @@ int main(void)
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_RESET);
 		  Display7SEG(led_buffer[index]);
 		  break;
-	  default:
-		  break;
 	  }
   }
 void  updateClockBuffer(int hour, int minute){
@@ -231,9 +229,9 @@ void  updateClockBuffer(int hour, int minute){
   }
   int hour = 15, minute = 8, second = 50;
   setTimer1(100);
-  setTimer2(25);
-  //setTimer3(100);
-  //setTimer4(100);
+  setTimer2(100);
+  setTimer3(100);
+  setTimer4(100);
   //int status = 1;
   while (1)
   {
@@ -263,7 +261,7 @@ void  updateClockBuffer(int hour, int minute){
 		  else {
 			  index_led++;
 			}
-		  setTimer2(25);
+		  setTimer2(100);
 		  }
 
     /* USER CODE END WHILE */
