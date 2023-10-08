@@ -464,7 +464,7 @@ const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
  8000418:	2300      	movs	r3, #0
  800041a:	633b      	str	r3, [r7, #48]	; 0x30
-uint8_t matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
+unsigned char matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
  800041c:	4a41      	ldr	r2, [pc, #260]	; (8000524 <main+0x144>)
  800041e:	f107 0310 	add.w	r3, r7, #16
  8000422:	e892 0003 	ldmia.w	r2, {r0, r1}
@@ -490,8 +490,8 @@ uint8_t matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
   setTimer3(100);
  8000442:	2064      	movs	r0, #100	; 0x64
  8000444:	f000 fb7e 	bl	8000b44 <setTimer3>
-  setTimer4(100);
- 8000448:	2064      	movs	r0, #100	; 0x64
+  setTimer4(50);
+ 8000448:	2032      	movs	r0, #50	; 0x32
  800044a:	f000 fb8f 	bl	8000b6c <setTimer4>
   //int status = 1;
   while (1)
@@ -501,8 +501,7 @@ uint8_t matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
  8000450:	681b      	ldr	r3, [r3, #0]
  8000452:	2b01      	cmp	r3, #1
  8000454:	d120      	bne.n	8000498 <main+0xb8>
-		  //TODO
-		  //HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin,GPIO_PIN_SET);
+
 		  if(second > 59){
  8000456:	6a7b      	ldr	r3, [r7, #36]	; 0x24
  8000458:	2b3b      	cmp	r3, #59	; 0x3b
@@ -577,6 +576,7 @@ uint8_t matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
  80004bc:	f44f 7096 	mov.w	r0, #300	; 0x12c
  80004c0:	f000 fb2c 	bl	8000b1c <setTimer2>
 		  }
+
 	  if(timer3_flag == 1){
  80004c4:	4b1a      	ldr	r3, [pc, #104]	; (8000530 <main+0x150>)
  80004c6:	681b      	ldr	r3, [r3, #0]
@@ -625,8 +625,8 @@ uint8_t matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
  8000510:	2300      	movs	r3, #0
  8000512:	633b      	str	r3, [r7, #48]	; 0x30
 		  }
-		  setTimer4(100);
- 8000514:	2064      	movs	r0, #100	; 0x64
+		  setTimer4(50);
+ 8000514:	2032      	movs	r0, #50	; 0x32
  8000516:	f000 fb29 	bl	8000b6c <setTimer4>
 	  if(timer1_flag == 1){
  800051a:	e798      	b.n	800044e <main+0x6e>
@@ -893,7 +893,7 @@ void turnOffMatrix(){
  800074c:	40010800 	.word	0x40010800
 
 08000750 <displayMatrix.6008>:
-void displayMatrix(uint8_t matrix[]){
+void displayMatrix(unsigned char matrix[]){
  8000750:	b580      	push	{r7, lr}
  8000752:	b084      	sub	sp, #16
  8000754:	af00      	add	r7, sp, #0
@@ -903,12 +903,12 @@ void displayMatrix(uint8_t matrix[]){
 	turnOffMatrix();
  800075e:	469c      	mov	ip, r3
  8000760:	f7ff ffbc 	bl	80006dc <turnOffMatrix.6002>
-	uint8_t cot0 = (matrix[0] & (1 << 0)) >> 0;
+	unsigned char cot0 = (matrix[0] & (1 << 0)) >> 0;
  8000764:	687b      	ldr	r3, [r7, #4]
  8000766:	781b      	ldrb	r3, [r3, #0]
  8000768:	f003 0301 	and.w	r3, r3, #1
  800076c:	73fb      	strb	r3, [r7, #15]
-	uint8_t cot1 = (matrix[1] & (1 << 1)) >> 1;
+	unsigned char cot1 = (matrix[1] & (1 << 1)) >> 1;
  800076e:	687b      	ldr	r3, [r7, #4]
  8000770:	3301      	adds	r3, #1
  8000772:	781b      	ldrb	r3, [r3, #0]
@@ -916,7 +916,7 @@ void displayMatrix(uint8_t matrix[]){
  8000776:	b2db      	uxtb	r3, r3
  8000778:	f003 0301 	and.w	r3, r3, #1
  800077c:	73bb      	strb	r3, [r7, #14]
-	uint8_t cot2 = (matrix[2] & (1 << 2)) >> 2;
+	unsigned char cot2 = (matrix[2] & (1 << 2)) >> 2;
  800077e:	687b      	ldr	r3, [r7, #4]
  8000780:	3302      	adds	r3, #2
  8000782:	781b      	ldrb	r3, [r3, #0]
@@ -924,7 +924,7 @@ void displayMatrix(uint8_t matrix[]){
  8000786:	b2db      	uxtb	r3, r3
  8000788:	f003 0301 	and.w	r3, r3, #1
  800078c:	737b      	strb	r3, [r7, #13]
-	uint8_t cot3 = (matrix[3] & (1 << 3)) >> 3;
+	unsigned char cot3 = (matrix[3] & (1 << 3)) >> 3;
  800078e:	687b      	ldr	r3, [r7, #4]
  8000790:	3303      	adds	r3, #3
  8000792:	781b      	ldrb	r3, [r3, #0]
@@ -932,7 +932,7 @@ void displayMatrix(uint8_t matrix[]){
  8000796:	b2db      	uxtb	r3, r3
  8000798:	f003 0301 	and.w	r3, r3, #1
  800079c:	733b      	strb	r3, [r7, #12]
-	uint8_t cot4 = (matrix[4] & (1 << 4)) >> 4;
+	unsigned char cot4 = (matrix[4] & (1 << 4)) >> 4;
  800079e:	687b      	ldr	r3, [r7, #4]
  80007a0:	3304      	adds	r3, #4
  80007a2:	781b      	ldrb	r3, [r3, #0]
@@ -940,7 +940,7 @@ void displayMatrix(uint8_t matrix[]){
  80007a6:	b2db      	uxtb	r3, r3
  80007a8:	f003 0301 	and.w	r3, r3, #1
  80007ac:	72fb      	strb	r3, [r7, #11]
-	uint8_t cot5 = (matrix[5] & (1 << 5)) >> 5;
+	unsigned char cot5 = (matrix[5] & (1 << 5)) >> 5;
  80007ae:	687b      	ldr	r3, [r7, #4]
  80007b0:	3305      	adds	r3, #5
  80007b2:	781b      	ldrb	r3, [r3, #0]
@@ -948,7 +948,7 @@ void displayMatrix(uint8_t matrix[]){
  80007b6:	b2db      	uxtb	r3, r3
  80007b8:	f003 0301 	and.w	r3, r3, #1
  80007bc:	72bb      	strb	r3, [r7, #10]
-	uint8_t cot6 = (matrix[6] & (1 << 6)) >> 6;
+	unsigned char cot6 = (matrix[6] & (1 << 6)) >> 6;
  80007be:	687b      	ldr	r3, [r7, #4]
  80007c0:	3306      	adds	r3, #6
  80007c2:	781b      	ldrb	r3, [r3, #0]
@@ -956,95 +956,95 @@ void displayMatrix(uint8_t matrix[]){
  80007c6:	b2db      	uxtb	r3, r3
  80007c8:	f003 0301 	and.w	r3, r3, #1
  80007cc:	727b      	strb	r3, [r7, #9]
-	uint8_t cot7 = (matrix[7] & (1 << 7)) >> 7;
+	unsigned char cot7 = (matrix[7] & (1 << 7)) >> 7;
  80007ce:	687b      	ldr	r3, [r7, #4]
  80007d0:	3307      	adds	r3, #7
  80007d2:	781b      	ldrb	r3, [r3, #0]
  80007d4:	09db      	lsrs	r3, r3, #7
  80007d6:	723b      	strb	r3, [r7, #8]
-	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, cot0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, cot0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  80007d8:	7bfb      	ldrb	r3, [r7, #15]
  80007da:	2b00      	cmp	r3, #0
- 80007dc:	bf14      	ite	ne
- 80007de:	2301      	movne	r3, #1
- 80007e0:	2300      	moveq	r3, #0
+ 80007dc:	bf0c      	ite	eq
+ 80007de:	2301      	moveq	r3, #1
+ 80007e0:	2300      	movne	r3, #0
  80007e2:	b2db      	uxtb	r3, r3
  80007e4:	461a      	mov	r2, r3
  80007e6:	2104      	movs	r1, #4
  80007e8:	482c      	ldr	r0, [pc, #176]	; (800089c <displayMatrix.6008+0x14c>)
  80007ea:	f000 fdc7 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, cot1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, cot1 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  80007ee:	7bbb      	ldrb	r3, [r7, #14]
  80007f0:	2b00      	cmp	r3, #0
- 80007f2:	bf14      	ite	ne
- 80007f4:	2301      	movne	r3, #1
- 80007f6:	2300      	moveq	r3, #0
+ 80007f2:	bf0c      	ite	eq
+ 80007f4:	2301      	moveq	r3, #1
+ 80007f6:	2300      	movne	r3, #0
  80007f8:	b2db      	uxtb	r3, r3
  80007fa:	461a      	mov	r2, r3
  80007fc:	2108      	movs	r1, #8
  80007fe:	4827      	ldr	r0, [pc, #156]	; (800089c <displayMatrix.6008+0x14c>)
  8000800:	f000 fdbc 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM2_GPIO_Port, ENM2_Pin, cot2 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM2_GPIO_Port, ENM2_Pin, cot2 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  8000804:	7b7b      	ldrb	r3, [r7, #13]
  8000806:	2b00      	cmp	r3, #0
- 8000808:	bf14      	ite	ne
- 800080a:	2301      	movne	r3, #1
- 800080c:	2300      	moveq	r3, #0
+ 8000808:	bf0c      	ite	eq
+ 800080a:	2301      	moveq	r3, #1
+ 800080c:	2300      	movne	r3, #0
  800080e:	b2db      	uxtb	r3, r3
  8000810:	461a      	mov	r2, r3
  8000812:	f44f 6180 	mov.w	r1, #1024	; 0x400
  8000816:	4821      	ldr	r0, [pc, #132]	; (800089c <displayMatrix.6008+0x14c>)
  8000818:	f000 fdb0 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM3_GPIO_Port, ENM3_Pin, cot3 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM3_GPIO_Port, ENM3_Pin, cot3 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  800081c:	7b3b      	ldrb	r3, [r7, #12]
  800081e:	2b00      	cmp	r3, #0
- 8000820:	bf14      	ite	ne
- 8000822:	2301      	movne	r3, #1
- 8000824:	2300      	moveq	r3, #0
+ 8000820:	bf0c      	ite	eq
+ 8000822:	2301      	moveq	r3, #1
+ 8000824:	2300      	movne	r3, #0
  8000826:	b2db      	uxtb	r3, r3
  8000828:	461a      	mov	r2, r3
  800082a:	f44f 6100 	mov.w	r1, #2048	; 0x800
  800082e:	481b      	ldr	r0, [pc, #108]	; (800089c <displayMatrix.6008+0x14c>)
  8000830:	f000 fda4 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM4_GPIO_Port, ENM4_Pin, cot4 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM4_GPIO_Port, ENM4_Pin, cot4 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  8000834:	7afb      	ldrb	r3, [r7, #11]
  8000836:	2b00      	cmp	r3, #0
- 8000838:	bf14      	ite	ne
- 800083a:	2301      	movne	r3, #1
- 800083c:	2300      	moveq	r3, #0
+ 8000838:	bf0c      	ite	eq
+ 800083a:	2301      	moveq	r3, #1
+ 800083c:	2300      	movne	r3, #0
  800083e:	b2db      	uxtb	r3, r3
  8000840:	461a      	mov	r2, r3
  8000842:	f44f 5180 	mov.w	r1, #4096	; 0x1000
  8000846:	4815      	ldr	r0, [pc, #84]	; (800089c <displayMatrix.6008+0x14c>)
  8000848:	f000 fd98 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM5_GPIO_Port, ENM5_Pin, cot5 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM5_GPIO_Port, ENM5_Pin, cot5 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  800084c:	7abb      	ldrb	r3, [r7, #10]
  800084e:	2b00      	cmp	r3, #0
- 8000850:	bf14      	ite	ne
- 8000852:	2301      	movne	r3, #1
- 8000854:	2300      	moveq	r3, #0
+ 8000850:	bf0c      	ite	eq
+ 8000852:	2301      	moveq	r3, #1
+ 8000854:	2300      	movne	r3, #0
  8000856:	b2db      	uxtb	r3, r3
  8000858:	461a      	mov	r2, r3
  800085a:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  800085e:	480f      	ldr	r0, [pc, #60]	; (800089c <displayMatrix.6008+0x14c>)
  8000860:	f000 fd8c 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM6_GPIO_Port, ENM6_Pin, cot6 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM6_GPIO_Port, ENM6_Pin, cot6 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  8000864:	7a7b      	ldrb	r3, [r7, #9]
  8000866:	2b00      	cmp	r3, #0
- 8000868:	bf14      	ite	ne
- 800086a:	2301      	movne	r3, #1
- 800086c:	2300      	moveq	r3, #0
+ 8000868:	bf0c      	ite	eq
+ 800086a:	2301      	moveq	r3, #1
+ 800086c:	2300      	movne	r3, #0
  800086e:	b2db      	uxtb	r3, r3
  8000870:	461a      	mov	r2, r3
  8000872:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8000876:	4809      	ldr	r0, [pc, #36]	; (800089c <displayMatrix.6008+0x14c>)
  8000878:	f000 fd80 	bl	800137c <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, cot7 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, cot7 ? GPIO_PIN_RESET : GPIO_PIN_SET);
  800087c:	7a3b      	ldrb	r3, [r7, #8]
  800087e:	2b00      	cmp	r3, #0
- 8000880:	bf14      	ite	ne
- 8000882:	2301      	movne	r3, #1
- 8000884:	2300      	moveq	r3, #0
+ 8000880:	bf0c      	ite	eq
+ 8000882:	2301      	moveq	r3, #1
+ 8000884:	2300      	movne	r3, #0
  8000886:	b2db      	uxtb	r3, r3
  8000888:	461a      	mov	r2, r3
  800088a:	f44f 4100 	mov.w	r1, #32768	; 0x8000
@@ -1079,33 +1079,33 @@ void updateLEDMatrix (int index ) {
  80008d0:	080008fb 	.word	0x080008fb
  80008d4:	08000901 	.word	0x08000901
  80008d8:	08000907 	.word	0x08000907
-		matrix_buffer[0] = 0xFF;
- 80008dc:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[0] = 0x18;
+ 80008dc:	2218      	movs	r2, #24
  80008de:	741a      	strb	r2, [r3, #16]
 		break;
  80008e0:	e015      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[1] = 0xFF;
- 80008e2:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[1] = 0x3C;
+ 80008e2:	223c      	movs	r2, #60	; 0x3c
  80008e4:	745a      	strb	r2, [r3, #17]
 		break;
  80008e6:	e012      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[2] = 0xFF;
- 80008e8:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[2] = 0x66;
+ 80008e8:	2266      	movs	r2, #102	; 0x66
  80008ea:	749a      	strb	r2, [r3, #18]
 		break;
  80008ec:	e00f      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[3] = 0xFF;
- 80008ee:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[3] = 0x66;
+ 80008ee:	2266      	movs	r2, #102	; 0x66
  80008f0:	74da      	strb	r2, [r3, #19]
 		break;
  80008f2:	e00c      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[4] = 0xFF;
- 80008f4:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[4] = 0x7E;
+ 80008f4:	227e      	movs	r2, #126	; 0x7e
  80008f6:	751a      	strb	r2, [r3, #20]
 		break;
  80008f8:	e009      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[5] = 0xFF;
- 80008fa:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[5] = 0x7E;
+ 80008fa:	227e      	movs	r2, #126	; 0x7e
  80008fc:	755a      	strb	r2, [r3, #21]
 		break;
  80008fe:	e006      	b.n	800090e <updateLEDMatrix.6019+0x6e>
@@ -1114,8 +1114,8 @@ void updateLEDMatrix (int index ) {
  8000902:	759a      	strb	r2, [r3, #22]
 		break;
  8000904:	e003      	b.n	800090e <updateLEDMatrix.6019+0x6e>
-		matrix_buffer[7] = 0xFF;
- 8000906:	22ff      	movs	r2, #255	; 0xff
+		matrix_buffer[7] = 0x66;
+ 8000906:	2266      	movs	r2, #102	; 0x66
  8000908:	75da      	strb	r2, [r3, #23]
 		break;
  800090a:	e000      	b.n	800090e <updateLEDMatrix.6019+0x6e>

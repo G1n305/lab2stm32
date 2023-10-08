@@ -254,27 +254,27 @@ void displayMatrix(unsigned char matrix[]){
 void updateLEDMatrix (int index ) {
 	switch ( index ) {
 	case 0:
-		matrix_buffer[0] = 0x18;
+		matrix_buffer[0] = 0xFF;
 
 		break;
 	case 1:
-		matrix_buffer[1] = 0x3C;
+		matrix_buffer[1] = 0xFF;
 
 		break;
 	case 2:
-		matrix_buffer[2] = 0x66;
+		matrix_buffer[2] = 0xFF;
 
 		break;
 	case 3:
-		matrix_buffer[3] = 0x66;
+		matrix_buffer[3] = 0xFF;
 
 		break;
 	case 4:
-		matrix_buffer[4] = 0x7E;
+		matrix_buffer[4] = 0xFF;
 
 		break;
 	case 5:
-		matrix_buffer[5] = 0x7E;
+		matrix_buffer[5] = 0xFF;
 
 		break;
 	case 6:
@@ -282,7 +282,7 @@ void updateLEDMatrix (int index ) {
 
 		break;
 	case 7:
-		matrix_buffer[7] = 0x66;
+		matrix_buffer[7] = 0xFF;
 		break;
 	default:
 		break;
