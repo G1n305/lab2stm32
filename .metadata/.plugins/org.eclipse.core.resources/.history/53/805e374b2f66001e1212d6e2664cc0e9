@@ -241,14 +241,14 @@ void displayMatrix(uint8_t matrix[]){
 	uint8_t cot6 = (matrix[6] & (1 << 6)) >> 6;
 	uint8_t cot7 = (matrix[7] & (1 << 7)) >> 7;
 
-	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, cot0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, cot1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM2_GPIO_Port, ENM2_Pin, cot2 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM3_GPIO_Port, ENM3_Pin, cot3 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM4_GPIO_Port, ENM4_Pin, cot4 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM5_GPIO_Port, ENM5_Pin, cot5 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM6_GPIO_Port, ENM6_Pin, cot6 ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, cot7 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, cot0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, cot1 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM2_GPIO_Port, ENM2_Pin, cot2 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM3_GPIO_Port, ENM3_Pin, cot3 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM4_GPIO_Port, ENM4_Pin, cot4 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM5_GPIO_Port, ENM5_Pin, cot5 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM6_GPIO_Port, ENM6_Pin, cot6 ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, cot7 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
 }
 void updateLEDMatrix (int index ) {
@@ -278,7 +278,7 @@ void updateLEDMatrix (int index ) {
 
 		break;
 	case 6:
-		matrix_buffer[6] = 0x66;
+		matrix_buffer[6] = 0xFF;
 
 		break;
 	case 7:
@@ -332,9 +332,8 @@ void updateLEDMatrix (int index ) {
 	  if(timer4_flag == 1){
 		  updateLEDMatrix(index_led_matrix);
 		  index_led_matrix++;
-
+		  if(index_led_matrix == 7) displayMatrix(matrix_buffer);
 		  if(index_led_matrix >= MAX_LED_MATRIX){
-			  displayMatrix(matrix_buffer);
 			  index_led_matrix = 0;
 		  }
 		  setTimer4(100);

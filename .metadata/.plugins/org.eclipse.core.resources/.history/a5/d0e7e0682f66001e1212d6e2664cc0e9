@@ -278,7 +278,7 @@ void updateLEDMatrix (int index ) {
 
 		break;
 	case 6:
-		matrix_buffer[6] = 0x66;
+		matrix_buffer[6] = 0xFF;
 
 		break;
 	case 7:
