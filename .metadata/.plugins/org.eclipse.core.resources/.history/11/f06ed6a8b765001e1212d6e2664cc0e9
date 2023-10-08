@@ -262,6 +262,7 @@ void  updateClockBuffer(int hour, int minute){
 		  setTimer2(100);
 		  }
 
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

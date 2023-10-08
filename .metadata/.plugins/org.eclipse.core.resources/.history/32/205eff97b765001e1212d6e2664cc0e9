@@ -256,12 +256,9 @@ void  updateClockBuffer(int hour, int minute){
 		  if(index_led >= 3){
 			  index_led = 0;
 		  }
-		  else {
-			  index_led++;
-			}
+		  else index_led++;
 		  setTimer2(100);
-		  }
-
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
