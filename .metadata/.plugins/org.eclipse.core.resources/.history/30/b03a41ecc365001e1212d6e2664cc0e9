@@ -175,8 +175,7 @@ int main(void)
 	  }
   }
   setTimer1(50);
-  setTimer2(100);
-
+  //int counter = 0;
   int status = 1;
   while (1)
   {
@@ -210,16 +209,12 @@ int main(void)
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, GPIO_PIN_SET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_RESET);
-		  Display7SEG(0);
+		  Display7SEG(4);
 		  break;
 		  }
 		  status++;
 		  if(status > 4) status=1;
 		  setTimer1(50);
-	  }
-	  if(timer2_flag == 1){
-		  HAL_GPIO_TogglePin(dot_GPIO_Port, dot_Pin);
-		  setTimer2(100);
 	  }
     /* USER CODE END WHILE */
 
