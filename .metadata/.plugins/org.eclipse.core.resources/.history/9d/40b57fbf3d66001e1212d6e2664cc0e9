@@ -229,7 +229,7 @@ void turnOffMatrix(){
 }
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-unsigned char matrix_buffer[8] = {0x01, 0x02, 0x03 ,0x04 ,0x05, 0x06 ,0x07 ,0x08};
+unsigned char matrix_buffer[8] = {0x18, 0x3C ,0x66 ,0x66 ,0x7E, 0x7E ,0x66 ,0x66};
 void displayMatrix(unsigned char matrix[]){
 	turnOffMatrix();
 	unsigned char cot0 = (matrix[0] & (1 << 0)) >> 0;
