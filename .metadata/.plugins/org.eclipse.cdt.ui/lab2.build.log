@@ -1,4 +1,4 @@
-08:33:59 **** Incremental Build of configuration Debug for project lab2 ****
+09:01:45 **** Incremental Build of configuration Debug for project lab2 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c:254:6: warning: 'updateMatrixBuffer' defined but not used [-Wunused-function]
@@ -14,7 +14,7 @@ arm-none-eabi-size   lab2.elf
 arm-none-eabi-objdump -h -S  lab2.elf  > "lab2.list"
 arm-none-eabi-objcopy  -O ihex  lab2.elf  "lab2.hex"
    text	   data	    bss	    dec	    hex	filename
-  10608	     20	   1676	  12304	   3010	lab2.elf
+  10580	     20	   1676	  12276	   2ff4	lab2.elf
 arm-none-eabi-objcopy  -O binary  lab2.elf  "lab2.bin"
 Finished building: default.size.stdout
  
@@ -25,5 +25,5 @@ Finished building: lab2.bin
 Finished building: lab2.list
  
 
-08:33:59 Build Finished. 0 errors, 2 warnings. (took 632ms)
+09:01:46 Build Finished. 0 errors, 2 warnings. (took 656ms)
 
