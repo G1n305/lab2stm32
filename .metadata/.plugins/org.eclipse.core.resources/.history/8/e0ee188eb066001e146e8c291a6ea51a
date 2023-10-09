@@ -278,6 +278,7 @@ void updateLEDMatrix (int index ) {
 		  HAL_GPIO_WritePin(GPIOB, matrix_buffer[index], RESET);
 		  break ;
 	  case 7:
+
 		  HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, RESET);
 		  HAL_GPIO_WritePin(GPIOB, matrix_buffer[index], RESET);
 		  break ;
@@ -290,7 +291,7 @@ void updateLEDMatrix (int index ) {
   setTimer1(100);
   setTimer2(250);
   setTimer3(100);
-  setTimer4(15);
+  setTimer4(20);
   //int status = 1;
   while (1)
   {
@@ -334,7 +335,7 @@ void updateLEDMatrix (int index ) {
 			  //displayMatrix(matrix_buffer);
 			  index_led_matrix = 0;
 		  }
-		  setTimer4(15);
+		  setTimer4(20);
 	  }
     /* USER CODE END WHILE */
 
