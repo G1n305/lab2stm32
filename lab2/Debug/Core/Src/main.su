@@ -2,8 +2,6 @@ main.c:97:8:Display7SEG	16	static
 main.c:66:5:main	72	static
 main.c:180:8:update7SEG	24	static
 main.c:214:7:updateClockBuffer	24	static
-main.c:220:6:turnOffMatrix	16	static
-main.c:233:6:displayMatrix	24	static
 main.c:258:6:updateLEDMatrix	24	static
 main.c:436:6:SystemClock_Config	72	static
 main.c:472:13:MX_TIM2_Init	32	static
